@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Para Minha Xuxu ❤️</title>
+
+<style>
+body{
+    margin:0;
+    font-family:Arial, sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow-y:auto;
+}
+
+.section{
+    display:none;
+    background:#fff;
+    width:90%;
+    max-width:420px;
+    padding:25px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 15px 35px rgba(0,0,0,.25);
+    margin:30px 0;
+    animation:fade .8s;
+    position:relative;
+    z-index:2;
+}
+.section.active{display:block;}
+
+@keyframes fade{
+    from{opacity:0;transform:translateY(20px);}
+    to{opacity:1;transform:translateY(0);}
+}
+
+h1{color:#ff4d6d;}
+p{color:#555;line-height:1.7;}
+
+input{
+    padding:12px;
+    width:80%;
+    border-radius:20px;
+    border:1px solid #ccc;
+    text-align:center;
+}
+
+button{
+    padding:12px 25px;
+    background:#ff4d6d;
+    color:#fff;
+    border:none;
+    border-radius:30px;
+    cursor:pointer;
+    margin-top:12px;
+    box-shadow:0 5px 15px rgba(255,77,109,.4);
+}
+button:active{transform:scale(.95);}
+
+/* fotos */
+.foto{
+    width:150px;height:150px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid #ff4d6d;
+    margin:15px 0;
+}
+
+/* coração pulsando */
+.heart-final{
+    font-size:55px;
+    animation:pulse 1.5s infinite;
+    margin:10px 0;
+}
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.2);}
+    100%{transform:scale(1);}
+}
+
+/* galeria */
+.galeria{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:15px 0;
+}
+.galeria img{
+    width:70px;height:70px;
+    border-radius:12px;
+    object-fit:cover;
+    border:2px solid #ff4d6d;
+}
+
+/* corações caindo */
+.fall{
+    position:absolute;
+    top:-10px;
+    font-size:14px;
+    opacity:.8;
+    animation:cair linear forwards;
+    pointer-events:none;
+}
+@keyframes cair{
+    to{transform:translateY(120vh);opacity:0;}
+}
+
+/* erro senha */
+@keyframes shake{
+  0%{transform:translateX(0);}
+  25%{transform:translateX(-6px);}
+  50%{transform:translateX(6px);}
+  75%{transform:translateX(-6px);}
+  100%{transform:translateX(0);}
+}
+.shake{animation:shake .4s;}
+</style>
+</head>
+
+<body>
+
+<!-- 🔐 SENHA -->
+<div id="senhaTela" class="section active">
+    <h1>🔐 Só pra você</h1>
+    <p>Quem acertar entra direto no meu coração ❤️</p>
+
+    <input type="password" id="senha" placeholder="Digite a senha">
+
+    <p style="font-size:13px;color:#999">
+        💡 Dica: <em>o dia mais feliz da minha vida ❤️🫢</em>
+    </p>
+
+    <p id="erro" style="color:#ff4d6d"></p>
+    <button onclick="verificarSenha()">Entrar 💖</button>
+</div>
+
+<!-- ❤️ TELA 1 -->
+<div id="tela1" class="section">
+    <h1>Xuxu ❤️</h1>
+    <img id="foto" src="foto1.jpg" class="foto">
+    <p id="mensagem">Clica no botão 💕</p>
+    <button onclick="clicarAmor()">Eu te amo 💘</button>
+</div>
+
+<!-- 💌 TELA 2 -->
+<div id="tela2" class="section">
+    <h1>Isso é pra você 💖</h1>
+    <img src="foto6.jpg" class="foto">
+    <p>Se amor tivesse forma, seria você.</p>
+    <button onclick="irTela3()">Continuar 💞</button>
+
+    <iframe width="100%" height="200"
+        src="https://www.youtube.com/embed/aBpvFwtN9Ds?start=90"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<!-- 🌹 TELA FINAL -->
+<div id="tela3" class="section">
+    <div class="heart-final">❤️</div>
+
+    <p>
+        Meu amor, hoje eu escrevo isso para você porque eu te amo.
+        Sou a pessoa que mais te admira nesse mundo.
+        Seu sorriso é a terceira coisa mais linda do mundo,
+        porque a primeira é você e a segunda o brilho dos seus olhos ❤️🥰<br><br>
+
+        Quero uma família com você,
+        filhos com seus olhos,
+        vivendo na vida de Deus
+        e conquistando tudo ao seu lado.<br><br>
+
+        <strong>Ass:</strong> seu xuxu ❤️
+    </p>
+
+    <div class="galeria">
+        <img src="foto2.jpg">
+        <img src="foto3.jpg">
+        <img src="foto4.jpg">
+    </div>
+
+    <p id="finalMsg" style="display:none;color:#ff4d6d;font-weight:bold;">
+        Eu escolheria você em todas as vidas ❤️
+    </p>
+
+    <button onclick="finalSurpresa()">💖 Última surpresa 💖</button>
+
+    <iframe id="musicaFinal"
+        width="100%" height="200"
+        style="display:none"
+        src="https://www.youtube.com/embed/6h3RJhoqgKc"
+        allowfullscreen>
+    </iframe>
+</div>
+
+<script>
+const SENHA="310124";
+const frasesErro=[
+ "Pensa com o coração ❤️",
+ "Essa data é especial 💕",
+ "Lembra do nosso dia 👀"
+];
+let tentativas=0;
+
+function verificarSenha(){
+    if(senha.value===SENHA){
+        erro.innerText="Agora sim… meu coração é todo seu ❤️";
+        setTimeout(()=>trocar("senhaTela","tela1"),1200);
+    }else{
+        erro.innerText=frasesErro[tentativas%frasesErro.length];
+        tentativas++;
+        senhaTela.classList.remove("shake");
+        void senhaTela.offsetWidth;
+        senhaTela.classList.add("shake");
+    }
+}
+
+const fotos=["foto1.jpg","foto2.jpg","foto3.jpg","foto4.jpg","foto5.jpg","foto6.jpg"];
+const msgs=[
+ "Você é meu lar ❤️",
+ "Minha escolha diária 💕",
+ "Meu amor pra sempre 💖"
+];
+let f=0,c=0;
+
+function clicarAmor(){
+    mensagem.innerText=msgs[Math.floor(Math.random()*msgs.length)];
+    f=(f+1)%fotos.length;
+    foto.src=fotos[f];
+    c++;
+    if(c>=5) trocar("tela1","tela2");
+}
+
+function irTela3(){trocar("tela2","tela3");}
+
+function trocar(a,b){
+    document.getElementById(a).classList.remove("active");
+    document.getElementById(b).classList.add("active");
+}
+
+function finalSurpresa(){
+    finalMsg.style.display="block";
+    musicaFinal.style.display="block";
+}
+
+function chuva(){
+    const palavras=["❤️","amor","xuxu","pra sempre","nós"];
+    const el=document.createElement("div");
+    el.className="fall";
+    el.innerText=palavras[Math.floor(Math.random()*palavras.length)];
+    el.style.left=Math.random()*100+"vw";
+    el.style.animationDuration=(Math.random()*5+6)+"s";
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),12000);
+}
+setInterval(chuva,600);
+</script>
+
+</body>
+      </html>
